@@ -6,7 +6,7 @@
 
     <groupId>ru.taskurotta</groupId>
     <artifactId>spring-3</artifactId>
-    <version>0.8.0-SNAPSHOT</version>
+    <version>0.8.0</version>
 
     <name>Taskurotta :: Spring 3</name>
 
