@@ -14,6 +14,54 @@
         <spring.version>3.2.6.RELEASE</spring.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>integration</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <skip.integration.tests>false</skip.integration.tests>
+            </properties>
+        </profile>
+        <profile>
+            <id>internalDeploy</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <distributionManagement>
+                <repository>
+                    <id>internal-releases</id>
+                    <url>http://nexus.egron.net:8081/nexus/content/repositories/releases</url>
+                </repository>
+                <snapshotRepository>
+                    <id>internal-snapshots</id>
+                    <name>Internal Snapshots</name>
+                    <url>http://nexus.egron.net:8081/nexus/content/repositories/snapshots</url>
+                    <uniqueVersion>false</uniqueVersion>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>ru.taskurotta</groupId>
